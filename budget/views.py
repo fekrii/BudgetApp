@@ -10,7 +10,8 @@ def project_list(request):
 
 def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
-    return render(request, 'budget/project-detail.html', {'project':project, 'expense_list': project.expenses.all()})
+    categories_list = Category.objects.filter(project=project)
+    return render(request, 'budget/project-detail.html', {'project':project, 'expense_list': project.expenses.all(), 'categories_list': categories_list})
 
 
 

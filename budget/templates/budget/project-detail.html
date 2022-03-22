@@ -26,7 +26,9 @@
 
   <section class="section-expenses">
     <div class="row">
-      <button class="btn waves-effect right">+ Add Expenses</button>
+      <button class="btn waves-effect right modal-trigger" href="#expenseModal">
+        + Add Expenses
+      </button>
     </div>
     <ul class="z-depth-1">
       {% for expense in expense_list%}
@@ -53,5 +55,36 @@
     </ul>
   </section>
 </div>
+
+<div id="expenseModal" class="modal">
+  <div class="modal-content">
+    <h4>Add Expense</h4>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="title">Title</label>
+      <input name="title" id="title" />
+
+      <label for="amount">Amount</label>
+      <input name="amount" id="amount" />
+
+      <select name="category">
+        {% for category in categories_list %}
+        <option>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit" class="btn">Add</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // materialize way to create modal
+  var elem = document.querySelector(".modal");
+  var instance = M.Modal.init(elem);
+
+  var elem = document.querySelector("select");
+  var instance = M.FormSelect.init(elem);
+</script>
 
 {% endblock content %}
