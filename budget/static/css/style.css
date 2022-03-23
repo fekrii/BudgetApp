@@ -59,6 +59,10 @@ html {
   background-color: #f2f2f2;
 }
 
+.section-expenses .close-icon:hover {
+  cursor: pointer;
+}
+
 /* Project Add view */
 form ul li.category {
   display: inline-block;
