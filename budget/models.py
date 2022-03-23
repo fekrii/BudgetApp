@@ -12,7 +12,7 @@ class Project(models.Model):
         super(Project, self).save(*args, **kwargs)
     
 
-
+    @property
     def budget_left(self):
         expense_list = Expense.objects.filter(project=self)
         total_amount = 0 
@@ -21,9 +21,10 @@ class Project(models.Model):
 
         return int(self.budget - total_amount)
 
+    @property
     def total_transactions(self):
         expense_list = Expense.objects.filter(project=self)
-        return len(expense_list)
+        return expense_list.count()
     
     def __str__(self):
         return self.name
